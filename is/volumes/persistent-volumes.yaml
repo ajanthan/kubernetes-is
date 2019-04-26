@@ -24,9 +24,8 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  nfs:
-    server: <NFS_SERVER_IP>
-    path: "<NFS_LOCATION_PATH>"
+  hostPath:
+    path: /data/is/supertenant/
 
 ---
 
@@ -42,6 +41,5 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  nfs:
-    server: <NFS_SERVER_IP>
-    path: "<NFS_LOCATION_PATH>"
+  hostPath:
+    path: /data/is/tenant/
