@@ -28,7 +28,7 @@ spec:
         image: mysql:5.7
         imagePullPolicy: IfNotPresent
         securityContext:
-          runAsUser: 999
+          runAsUser: 0
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: root
