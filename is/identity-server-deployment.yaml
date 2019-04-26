@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: wso2is
-        image: docker.wso2.com/wso2is:5.7.0
+        image: wso2/wso2is:5.7.0
         livenessProbe:
           exec:
             command:
