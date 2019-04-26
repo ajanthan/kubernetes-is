@@ -54,7 +54,7 @@ spec:
               command:  ['sh', '-c', '${WSO2_SERVER_HOME}/bin/wso2server.sh stop']
         imagePullPolicy: Always
         securityContext:
-          runAsUser: 802
+          runAsUser: 0
         ports:
         - containerPort: 9763
           protocol: TCP
