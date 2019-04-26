@@ -35,37 +35,37 @@ function usage () {
     echoBold "--cap | --cluster-admin-password\tKubernetes cluster admin password\n\n"
 }
 
-WSO2_SUBSCRIPTION_USERNAME=''
-WSO2_SUBSCRIPTION_PASSWORD=''
-ADMIN_PASSWORD=''
+# WSO2_SUBSCRIPTION_USERNAME=''
+# WSO2_SUBSCRIPTION_PASSWORD=''
+# ADMIN_PASSWORD=''
 
 # capture named arguments
-while [ "$1" != "" ]; do
-    PARAM=`echo $1 | awk -F= '{print $1}'`
-    VALUE=`echo $1 | awk -F= '{print $2}'`
+# while [ "$1" != "" ]; do
+#     PARAM=`echo $1 | awk -F= '{print $1}'`
+#     VALUE=`echo $1 | awk -F= '{print $2}'`
 
-    case ${PARAM} in
-        -h | --help)
-            usage
-            exit 1
-            ;;
-        --wu | --wso2-username)
-            WSO2_SUBSCRIPTION_USERNAME=${VALUE}
-            ;;
-        --wp | --wso2-password)
-            WSO2_SUBSCRIPTION_PASSWORD=${VALUE}
-            ;;
-        --cap | --cluster-admin-password)
-            ADMIN_PASSWORD=${VALUE}
-            ;;
-        *)
-            echoBold "ERROR: unknown parameter \"${PARAM}\""
-            usage
-            exit 1
-            ;;
-    esac
-    shift
-done
+#     case ${PARAM} in
+#         -h | --help)
+#             usage
+#             exit 1
+#             ;;
+#         --wu | --wso2-username)
+#             WSO2_SUBSCRIPTION_USERNAME=${VALUE}
+#             ;;
+#         --wp | --wso2-password)
+#             WSO2_SUBSCRIPTION_PASSWORD=${VALUE}
+#             ;;
+#         --cap | --cluster-admin-password)
+#             ADMIN_PASSWORD=${VALUE}
+#             ;;
+#         *)
+#             echoBold "ERROR: unknown parameter \"${PARAM}\""
+#             usage
+#             exit 1
+#             ;;
+#     esac
+#     shift
+# done
 
 # create a new Kubernetes Namespace
 ${KUBECTL} create namespace wso2
@@ -77,10 +77,10 @@ ${KUBECTL} create serviceaccount wso2svc-account -n wso2
 ${KUBECTL} config set-context $(${KUBECTL} config current-context) --namespace=wso2
 
 # create a Kubernetes Secret for passing WSO2 Private Docker Registry credentials
-${KUBECTL} create secret docker-registry wso2creds --docker-server=docker.wso2.com --docker-username=${WSO2_SUBSCRIPTION_USERNAME} --docker-password=${WSO2_SUBSCRIPTION_PASSWORD} --docker-email=${WSO2_SUBSCRIPTION_USERNAME}
+#${KUBECTL} create secret docker-registry wso2creds --docker-server=docker.wso2.com --docker-username=${WSO2_SUBSCRIPTION_USERNAME} --docker-password=${WSO2_SUBSCRIPTION_PASSWORD} --docker-email=${WSO2_SUBSCRIPTION_USERNAME}
 
 # create Kubernetes Role and Role Binding necessary for the Kubernetes API requests made from Kubernetes membership scheme
-${KUBECTL} create --username=admin --password=${ADMIN_PASSWORD} -f ../../rbac/rbac.yaml
+#${KUBECTL} create --username=admin --password=${ADMIN_PASSWORD} -f ../../rbac/rbac.yaml
 
 # create Kubernetes ConfigMaps
 echoBold 'Creating Kubernetes ConfigMaps...'
